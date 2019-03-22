@@ -10,7 +10,7 @@ class SegTree {
         int left (int p) { return p << 1;}
         int left (int p) { return (p << 1) + 1;}
 
-        void build(int p, int L, int R){
+        void buildMinQuery(int p, int L, int R){
                 if(L==R) st[p] = L;
                 else{
                         build(left(p), L, (L+R)/2);
@@ -20,11 +20,11 @@ class SegTree {
                 }
         }
 
-        int rmq(int p, int L, int R, int i, int j){
+        int minQuery(int p, int L, int R, int i, int j){
                 if(i>R || j<L) return -1;
                 if(L >= i && R <= j) return st[p];
-                int p1 = rmq(left(p), L, (L+R)/2 , i , j);
-                int p2 = rmq(right(p), (L+R)/2 +1, R, i, j);
+                int p1 = minQuery(left(p), L, (L+R)/2 , i , j);
+                int p2 = minQuery(right(p), (L+R)/2 +1, R, i, j);
 
                 if(p1 == -1) return p2;
                 if(p2 == -1) return p1;
@@ -39,5 +39,14 @@ public:
                 build(1,0,n-1);
         }
 
-        int rmq(int i, int j) {return rmq(1,0,n-1,i,j);}
+        int minQuery(int i, int j) {return minQuery(1,0,n-1,i,j);}
+
+        /*Modify a value and update its parents*/
+        void updateMinQuery(int pos, int value){
+                st[p+n] = value;
+
+                for(int i=p; i>1; i>>=1){
+                        st[i>>1] = (st[i]<=st[i++] ? st[i]:st[i++]);
+                }
+        }
 };
