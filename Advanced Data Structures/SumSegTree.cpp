@@ -13,10 +13,10 @@ private:
         /*Build fuction*/
         void buildSumInterval(){
                 for(int i=0; i<size; i++){
-                        segtree[size-1+i] = A[i];
+                        segtree[size+i] = A[i];
                 }
 
-                for(int i=size-2; i>=0; i--){
+                for(int i=size-1; i>0; i--){
                         segtree[i] = segtree[i<<1] + segtree[i<<1 | 1];
                 }
         }
@@ -44,12 +44,12 @@ public:
         void updateSumInterval(int p, int value){
 
                 //set the value already
-                segtree[p+size-1] = value;
-                p += size-1;
+                segtree[p+size] = value;
+                p += size;
 
                 //move upwards and update parents
                 for(int i =p; i>1; i>>=1){
-                        segtree[i>>1] = segtree[i] + segtree[i++];
+                        segtree[i>>1] = segtree[i^1] + segtree[i];
                 }
         }
 
