@@ -8,15 +8,15 @@ class SegTree {
         vi st, A;
         int n;
         int left (int p) { return p << 1;}
-        int left (int p) { return (p << 1) + 1;}
+        int right (int p) { return (p << 1) + 1;}
 
         void buildMinQuery(int p, int L, int R){
                 if(L==R) st[p] = L;
                 else{
-                        build(left(p), L, (L+R)/2);
-                        build(right(p), (L+R)/2 +1, R);
+                        buildMinQuery(left(p), L, (L+R)/2);
+                        buildMinQuery(right(p), (L+R)/2 + 1, R);
                         int p1 = st[left(p)], p2 = st[right(p)];
-                        st[p] = (A[p1] <= A[p2]) ? p1 : p2;
+                        st[p] = (A[p1] <= A[p2]) ? p1:p2;
                 }
         }
 
@@ -25,28 +25,17 @@ class SegTree {
                 if(L >= i && R <= j) return st[p];
                 int p1 = minQuery(left(p), L, (L+R)/2 , i , j);
                 int p2 = minQuery(right(p), (L+R)/2 +1, R, i, j);
-
                 if(p1 == -1) return p2;
                 if(p2 == -1) return p1;
-
-                return (A[p1] <= A[p2] ? p1:p2);
+                return A[p1] <= A[p2] ? p1:p2;
         }
 
 public:
         SegTree(const vi& _A){
                 A = _A; n = (int) A.size();
-                st.assign(2*n, 0);
-                build(1,0,n-1);
+                st.assign(4*n, 0);
+                buildMinQuery(1,0,n-1);
         }
 
         int minQuery(int i, int j) {return minQuery(1,0,n-1,i,j);}
-
-        /*Modify a value and update its parents*/
-        void updateMinQuery(int pos, int value){
-                st[p+n] = value;
-
-                for(int i=p; i>1; i>>=1){
-                        st[i>>1] = (st[i]<=st[i++] ? st[i]:st[i++]);
-                }
-        }
 };
