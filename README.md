@@ -1,2 +1,2 @@
 # Programming-competitions
-Notebook with samples of codes for programming competitions
+Notebook with samples of common problems for programming competitions
