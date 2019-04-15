@@ -38,7 +38,7 @@ public:
 	}
 	vi primesFactors(ll number){
 		vi factors;
-		ll PF_indx =0, PF = primes[PF_idx];
+		ll PF_idx =0, PF = primes[PF_idx];
 		while(number != 1 && (PF*PF <= number)){
 			while(number % PF == 0){
 				number /= PF;
