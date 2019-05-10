@@ -10,6 +10,9 @@ using namespace std;
 typedef long long  ll;
 typedef vector<int> vi;
 
+//para contar quantos divisores um numero tem
+int divs[10000010];
+
 class Primes {
 private:
 	ll _sieve_size;
@@ -18,7 +21,21 @@ private:
 
 	void sieve(){
 		for(ll i=2; i<= _sieve_size; i++) if(bs[i]){
-			for(ll j=i*i; j<= _sieve_size; j+= i) bs[j]=0;
+			/*Parte para contar quantos divisores um dado intervalo de numeros inteiros tem
+			divs[i] = 2;
+			*/
+			for(ll j=i*i; j<= _sieve_size; j+= i){ //para contar o número de divisores, mudar j = i+i
+				bs[j]=0;
+				
+				/*Parte para contar quantos divisores um dado intervalo tem
+				int num_divs = 0;
+				int ref = j;    //guarda referencia do j
+				
+				while(ref % i == 0){ref /= i; num_divs++;}
+				if(divs[j] == 0) divs[j] = num_divs+1;    //primeiro expoente
+				else divs[j] *= (num_divs+1);             //próximos expoentes
+				*/
+			}
 			primes.push_back((int)i);
 		}
 	}
