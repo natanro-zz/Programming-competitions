@@ -2,8 +2,6 @@
 0-based segtree
 minimum range queries*/
 
-/*falta implementar atualização de elementos*/
-
 #include <bits/stdc++.h>
 
 using namespace std;
