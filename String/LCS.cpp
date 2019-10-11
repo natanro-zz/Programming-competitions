@@ -1,4 +1,37 @@
 /*
+ARRUMAR#include<bits/stdc++.h>
+
+using namespace std;
+
+bool check(int i){
+    set<int> s;
+    while(i>0){
+        int aux=i%10;
+        if(s.insert(aux).second){
+            i=i/10;
+        }else{
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+int main(){
+    int a, b;
+    cin >> a >> b;
+    
+    for(int i=a; i<=b; i++){
+        if(check(i)){
+            cout << i << endl;
+            return 0;
+        }
+    }
+    cout << "-1" << endl;
+    
+    return 0;
+}
+
 Longest common Subsequence problem. 
 Contrua uma tabela tal que:
 Base: para i=0 || j=0 insira zero, uma vez que nao ha subsequencia comum 
