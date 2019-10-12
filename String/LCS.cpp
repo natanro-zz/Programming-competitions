@@ -1,37 +1,4 @@
 /*
-ARRUMAR#include<bits/stdc++.h>
-
-using namespace std;
-
-bool check(int i){
-    set<int> s;
-    while(i>0){
-        int aux=i%10;
-        if(s.insert(aux).second){
-            i=i/10;
-        }else{
-            return false;
-        }
-    }
-    
-    return true;
-}
-
-int main(){
-    int a, b;
-    cin >> a >> b;
-    
-    for(int i=a; i<=b; i++){
-        if(check(i)){
-            cout << i << endl;
-            return 0;
-        }
-    }
-    cout << "-1" << endl;
-    
-    return 0;
-}
-
 Longest common Subsequence problem. 
 Contrua uma tabela tal que:
 Base: para i=0 || j=0 insira zero, uma vez que nao ha subsequencia comum 
@@ -48,8 +15,6 @@ Recorrencia: para i>0, j>0
 
 using namespace std;
 
-#define MISMATCH -1000000
-
 int LCS(string& a, string& b){
         int asize = a.size(), bsize = b.size();
         vector<vector<int>> table(asize+1, vector<int>(bsize+1));
@@ -57,11 +22,9 @@ int LCS(string& a, string& b){
                 for(int j=0; j<=bsize; j++){
                         if(i==0 || j==0) table[i][j]=0;
                         else{
-                                int option1 = table[i-1][j-1] + ( (a[i] == b[j]) ? 1:MISMATCH); // match or mismatch (we just want the match)
-                                int option2 = table[i-1][j]; //deletion a[i] set to 0
-                                int option3 = table[i][j-1]; // insertion b[i] set to 0;
-                                int chosenOption = max(option1, max(option2, option3));
-                                table[i][j] = chosenOption;
+                                table[i][j] = table[i-1][j-1] + (a[i-1]==b[j-1] ? 1:0);
+                                table[i][j] = max(table[i][j], table[i-1][j]);
+                                table[i][j] = max(table[i][j], table[i][j-1]);
                         }
                 }
         }
