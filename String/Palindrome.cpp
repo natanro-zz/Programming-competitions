@@ -1,4 +1,6 @@
 /*
+A saber: qual palindromo formado? Não apenas o comprimento deste.
+
 Palindrome in a string.
 O(n²) time. Up to N<=5k
 */
