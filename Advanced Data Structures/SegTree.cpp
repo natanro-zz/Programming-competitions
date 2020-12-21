@@ -2,7 +2,11 @@
 1-based segtree
 minimum range queries*/
 
-// TODO: update one value
+/* TODO: 
+1 - implement maxQuery
+2 - implement sumQuery
+3 - implement update values
+*/
 
 #include <bits/stdc++.h>
 
