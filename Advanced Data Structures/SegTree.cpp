@@ -1,5 +1,5 @@
 /*tested
-0-based segtree
+1-based segtree
 minimum range queries*/
 
 #include <bits/stdc++.h>
