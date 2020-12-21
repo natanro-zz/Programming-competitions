@@ -2,6 +2,8 @@
 1-based segtree
 minimum range queries*/
 
+// TODO: update one value
+
 #include <bits/stdc++.h>
 
 using namespace std;
