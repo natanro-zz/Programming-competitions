@@ -4,10 +4,6 @@ minimum, maximum or sum range queries
 search interval 0 to n-1
 */
 
-/* TODO:
-3 - implement update values
-*/
-
 #include <bits/stdc++.h>
 
 using namespace std;
